@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بررسی دامنه آزاد .ir</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: rgba(30, 41, 59, 0.85);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border: 1px solid #334155;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+      color: #38bdf8;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #cbd5e1;
+    }
+
+    textarea {
+      width: 100%;
+      height: 140px;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: #f1f5f9;
+      font-size: 15px;
+      resize: vertical;
+      direction: ltr;
+      text-align: left;
+      font-family: monospace;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 6px;
+      margin-bottom: 18px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    #checkBtn {
+      background: linear-gradient(90deg, #0ea5e9, #0284c7);
+      color: white;
+    }
+
+    #checkBtn:hover:not(:disabled) {
+      background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+      transform: translateY(-1px);
+    }
+
+    #checkBtn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #clearBtn {
+      background: #334155;
+      color: #e2e8f0;
+    }
+
+    #clearBtn:hover {
+      background: #475569;
+    }
+
+    .progress {
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: #0f172a;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: right;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    th {
+      background: #1e293b;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .domain {
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+      color: #e2e8f0;
+    }
+
+    .status {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .azad {
+      color: #4ade80;
+    }
+
+    .sell {
+      color: #f87171;
+    }
+
+    .error {
+      color: #fbbf24;
+    }
+
+    .loading {
+      color: #94a3b8;
+    }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    .note {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      color: #bae6fd;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>بررسی دامنه آزاد .ir</h1>
+    <p class="subtitle">ابزار چک کردن وضعیت دامنه با استفاده از whois.nic.ir</p>
+
+    <div class="note">
+      دامنه‌ها را یکی در هر خط وارد کنید (مثال: test.ir). اسکن به صورت ترتیبی انجام می‌شود تا بلاک نشوید.
+    </div>
+
+    <label for="domains">لیست دامنه‌ها:</label>
+    <textarea id="domains" placeholder="test.ir&#10;example.ir&#10;mydomain.ir"></textarea>
+    <div class="hint">فقط دامنه‌های .ir پشتیبانی می‌شوند. فاصله و حروف بزرگ نادیده گرفته می‌شوند.</div>
+
+    <div class="btn-row">
+      <button id="checkBtn" onclick="startCheck()">شروع اسکن</button>
+      <button id="clearBtn" onclick="clearAll()">پاک کردن</button>
+    </div>
+
+    <div class="progress" id="progress"></div>
+
+    <div id="results"></div>
+
+    <div class="footer">
+      ساخته شده برای GitHub Pages • منبع داده: <a href="https://whois.nic.ir" target="_blank">whois.nic.ir</a>
+    </div>
+  </div>
+
+  <script>
+    const DELAY_MS = 1200; // تاخیر بین درخواست‌ها برای جلوگیری از بلاک
+
+    function normalizeDomain(d) {
+      d = d.trim().toLowerCase();
+      if (!d) return null;
+      if (!d.endsWith('.ir')) d += '.ir';
+      // فقط حروف، عدد، خط تیره و نقطه
+      if (!/^[a-z0-9.-]+\.ir$/.test(d)) return null;
+      return d;
+    }
+
+    function clearAll() {
+      document.getElementById('domains').value = '';
+      document.getElementById('results').innerHTML = '';
+      document.getElementById('progress').style.display = 'none';
+      document.getElementById('checkBtn').disabled = false;
+    }
+
+    async function checkOneDomain(domain) {
+      // استفاده از پروکسی CORS برای دور زدن محدودیت مرورگر
+      const targetUrl = `https://whois.nic.ir/whois?name=${encodeURIComponent(domain)}`;
+      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+        const res = await fetch(proxyUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (!res.ok) throw new Error('network');
+
+        const text = (await res.text()).toLowerCase();
+
+        if (text.includes('no entries found') || text.includes('error:101')) {
+          return 'Azad';
+        } else if (text.includes('domain:') || text.includes('nserver:') || text.includes('source: irnic')) {
+          return 'Sell';
+        } else {
+          return 'Error';
+        }
+      } catch (e) {
+        return 'Error';
+      }
+    }
+
+    async function startCheck() {
+      const raw = document.getElementById('domains').value;
+      const lines = raw.split(/\r?\n/);
+      const domains = [];
+
+      for (const line of lines) {
+        const d = normalizeDomain(line);
+        if (d && !domains.includes(d)) domains.push(d);
+      }
+
+      if (domains.length === 0) {
+        alert('حداقل یک دامنه معتبر وارد کنید (مثال: test.ir)');
+        return;
+      }
+
+      const btn = document.getElementById('checkBtn');
+      const progress = document.getElementById('progress');
+      const resultsDiv = document.getElementById('results');
+
+      btn.disabled = true;
+      progress.style.display = 'block';
+      progress.textContent = `در حال آماده‌سازی اسکن ${domains.length} دامنه...`;
+
+      // جدول نتایج
+      let html = `
+        <table>
+          <thead>
+            <tr>
+              <th style="width:55%">دامنه</th>
+              <th>وضعیت</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+      `;
+
+      for (const d of domains) {
+        html += `<tr id="row-${d.replace(/\./g,'-')}">
+                   <td class="domain">${d}</td>
+                   <td class="status loading">در حال بررسی...</td>
+                 </tr>`;
+      }
+      html += `</tbody></table>`;
+      resultsDiv.innerHTML = html;
+
+      let done = 0;
+      for (const domain of domains) {
+        progress.textContent = `در حال بررسی ${done + 1} از ${domains.length} ← ${domain}`;
+
+        const status = await checkOneDomain(domain);
+        const row = document.getElementById(`row-${domain.replace(/\./g,'-')}`);
+        const cell = row.querySelector('.status');
+
+        if (status === 'Azad') {
+          cell.textContent = 'آزاد';
+          cell.className = 'status azad';
+        } else if (status === 'Sell') {
+          cell.textContent = 'ثبت‌شده';
+          cell.className = 'status sell';
+        } else {
+          cell.textContent = 'خطا / نامشخص';
+          cell.className = 'status error';
+        }
+
+        done++;
+        if (done < domains.length) {
+          await new Promise(r => setTimeout(r, DELAY_MS));
+        }
+      }
+
+      progress.textContent = `تمام شد — ${domains.length} دامنه بررسی شد.`;
+      btn.disabled = false;
+    }
+  </script>
+</body>
+</html>
